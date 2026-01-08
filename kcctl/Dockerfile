@@ -1,7 +1,5 @@
 FROM alpine:3.23 AS builder
 
-LABEL org.opencontainers.image.source=https://github.com/createdna/dockerfiles
-
 ARG KCCTL_VERSION=1.0.0.CR4
 ARG TARGETARCH
 
@@ -17,6 +15,8 @@ RUN ARCH=$(case ${TARGETARCH} in \
     chmod +x /usr/local/bin/kcctl
 
 FROM gcr.io/distroless/base-debian13:nonroot
+
+LABEL org.opencontainers.image.source=https://github.com/createdna/dockerfiles
 
 COPY --from=builder /usr/local/bin/kcctl /usr/local/bin/kcctl
 
