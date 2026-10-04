@@ -4,7 +4,7 @@ This directory contains Docker images for TimescaleDB with the TimescaleDB Toolk
 
 ## Available Dockerfiles
 
-### 1. Dockerfile.debian (Recommended for CI/CD)
+### 1. Dockerfile (Recommended for CI/CD)
 **Base:** PostgreSQL 16 on Debian Bookworm
 **Size:** ~200-300MB
 **Build time:** Fast (~2-3 minutes)
@@ -43,19 +43,19 @@ This directory contains Docker images for TimescaleDB with the TimescaleDB Toolk
 #### Latest versions (simplest):
 ```bash
 cd timescaledb
-docker build -f Dockerfile.debian -t timescaledb-toolkit:latest .
+docker build -f Dockerfile -t timescaledb-toolkit:latest .
 ```
 
 #### Specific PostgreSQL version:
 ```bash
 # PostgreSQL 14
-docker build --build-arg PG_VERSION=14 -f Dockerfile.debian -t timescaledb-toolkit:pg14 .
+docker build --build-arg PG_VERSION=14 -f Dockerfile -t timescaledb-toolkit:pg14 .
 
 # PostgreSQL 15
-docker build --build-arg PG_VERSION=15 -f Dockerfile.debian -t timescaledb-toolkit:pg15 .
+docker build --build-arg PG_VERSION=15 -f Dockerfile -t timescaledb-toolkit:pg15 .
 
 # PostgreSQL 16 (default)
-docker build --build-arg PG_VERSION=16 -f Dockerfile.debian -t timescaledb-toolkit:pg16 .
+docker build --build-arg PG_VERSION=16 -f Dockerfile -t timescaledb-toolkit:pg16 .
 ```
 
 #### Pinned versions (for reproducible builds):
@@ -64,7 +64,7 @@ docker build \
   --build-arg PG_VERSION=16 \
   --build-arg TIMESCALEDB_VERSION=2.17.2~debian12 \
   --build-arg TOOLKIT_VERSION=1.18.0~debian12 \
-  -f Dockerfile.debian \
+  -f Dockerfile \
   -t timescaledb-toolkit:pg16-pinned .
 ```
 
@@ -275,7 +275,7 @@ steps:
 
 ## Recommendation
 
-**Use Dockerfile.debian** for:
+**Use Dockerfile** for:
 - CI/CD pipelines
 - Production environments
 - When reliability > size
@@ -291,17 +291,17 @@ steps:
 ### Build commands:
 ```bash
 # Latest everything
-docker build -f Dockerfile.debian -t timescaledb:latest .
+docker build -f Dockerfile -t timescaledb:latest .
 
 # Specific PG version
-docker build --build-arg PG_VERSION=15 -f Dockerfile.debian -t timescaledb:pg15 .
+docker build --build-arg PG_VERSION=15 -f Dockerfile -t timescaledb:pg15 .
 
 # Pinned versions (reproducible) - note the 1: prefix for toolkit
 docker build \
   --build-arg PG_VERSION=16 \
   --build-arg TIMESCALEDB_VERSION=2.25.1~debian12-1612 \
   --build-arg TOOLKIT_VERSION=1:1.22.0~debian12 \
-  -f Dockerfile.debian -t timescaledb:pg16-pinned .
+  -f Dockerfile -t timescaledb:pg16-pinned .
 ```
 
 ### Using Makefile:
@@ -330,7 +330,7 @@ E: Version '2.17.2~debian12' for 'timescaledb-2-postgresql-16' was not found
 ```
 **Solution**: Check available versions or omit version to use latest:
 ```bash
-docker build --build-arg PG_VERSION=16 -f Dockerfile.debian .
+docker build --build-arg PG_VERSION=16 -f Dockerfile .
 ```
 
 ### Extension not loaded:

@@ -40,7 +40,7 @@ build-latest:
 	@echo "Building TimescaleDB with PostgreSQL $(PG_VERSION) (latest versions)..."
 	docker build \
 		--build-arg PG_VERSION=$(PG_VERSION) \
-		-f Dockerfile.debian \
+		-f Dockerfile \
 		-t $(IMAGE_NAME):pg$(PG_VERSION)-latest \
 		-t $(IMAGE_NAME):latest \
 		.
@@ -64,7 +64,7 @@ build-pinned:
 		--build-arg PG_VERSION=$(PG_VERSION) \
 		--build-arg TIMESCALEDB_VERSION=$(TIMESCALEDB_VERSION) \
 		--build-arg TOOLKIT_VERSION=$(TOOLKIT_VERSION) \
-		-f Dockerfile.debian \
+		-f Dockerfile \
 		-t $(IMAGE_NAME):pg$(PG_VERSION)-ts$(TIMESCALEDB_VERSION) \
 		.
 
