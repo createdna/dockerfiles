@@ -44,6 +44,8 @@ RUN echo "shared_preload_libraries = 'timescaledb'" >> /usr/share/postgresql/pos
 ARG PG_VERSION=16
 FROM postgres:${PG_VERSION}-bookworm
 
+LABEL org.opencontainers.image.source=https://github.com/createdna/dockerfiles
+
 # Declare PG_VERSION for use in this stage
 ARG PG_VERSION
 

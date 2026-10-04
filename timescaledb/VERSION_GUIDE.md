@@ -52,7 +52,7 @@
 # Let APT choose the latest
 docker build \
   --build-arg PG_VERSION=16 \
-  -f Dockerfile.debian \
+  -f Dockerfile \
   -t timescaledb:dev .
 ```
 
@@ -63,7 +63,7 @@ docker build \
   --build-arg PG_VERSION=16 \
   --build-arg TIMESCALEDB_VERSION=2.25.1~debian12-1612 \
   --build-arg TOOLKIT_VERSION=1:1.22.0~debian12 \
-  -f Dockerfile.debian \
+  -f Dockerfile \
   -t timescaledb:prod .
 ```
 

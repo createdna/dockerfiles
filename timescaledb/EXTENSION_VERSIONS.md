@@ -214,4 +214,4 @@ docker stop test && docker rm test
 ## Related Files
 - `init-timescaledb.sh` - Basic initialization (recommended)
 - `init-timescaledb-verbose.sh` - With version logging
-- `Dockerfile.debian` - Where APT versions are specified
+- `Dockerfile` - Where APT versions are specified
